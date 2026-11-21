@@ -1,8 +1,8 @@
 # Arena RPG: simulador de combate con dados
 
-Autor: Libardo Morales Gutierrez
-Programa: Ingeniería de Sistemas, Corporación Universitaria Americana
-Asignatura: Desarrollo de Aplicaciones Web II
+- **Autor:** Libardo Morales Gutierrez
+- **Programa:** Ingeniería de Sistemas, Corporación Universitaria Americana
+- **Asignatura:** Desarrollo de Aplicaciones Web II
 
 ## 1. Presentación del proyecto
 
@@ -123,16 +123,29 @@ Verifican el rango del dado, la repetibilidad con semilla, la fórmula de daño 
 
 ## 7. Evidencias de funcionamiento
 
-Las capturas están en la carpeta `evidencias/`.
+**Interfaz principal:** formulario donde se ingresan los dos personajes.
 
-| Archivo | Qué muestra |
-|---|---|
-| `ev5_interfaz_principal.png` | Interfaz principal (formulario) |
-| `ev6_resultado_combate.png` | Funcionamiento y resultado del procesamiento |
-| `ev7_validacion_error.png` | Manejo de entrada inválida (vida 0) |
-| `ev2_todas_pasan.png` | Ejecución de pytest (motor) |
-| `ev3_falla_vida_negativa.png` | Una prueba que detecta un error introducido a propósito |
-| `ev4_filtro_k.png` | Ejecución de un grupo de pruebas con `-k` |
+![Interfaz principal](evidencias/ev5_interfaz_principal.png)
+
+**Funcionalidad en ejecución y resultado del procesamiento:** ganador, registro turno a turno (el crítico aparece resaltado) y porcentaje de victoria en 1000 combates.
+
+![Resultado del combate](evidencias/ev6_resultado_combate.png)
+
+**Manejo de entrada inválida:** con vida 0 la aplicación muestra un mensaje de error y no simula el combate.
+
+![Validación de datos](evidencias/ev7_validacion_error.png)
+
+**Ejecución de las pruebas con pytest:** 28 pruebas aprobadas.
+
+![pytest: todas pasan](evidencias/ev2_todas_pasan.png)
+
+**Ejecución de un grupo de pruebas con `-k "dano"`:** solo se corren las 7 pruebas de daño.
+
+![pytest con filtro -k](evidencias/ev4_filtro_k.png)
+
+**Una prueba que detecta un error introducido a propósito** (se quitó `max(0, ...)` en `recibir_dano`): falla la prueba de la vida negativa.
+
+![pytest: prueba que falla](evidencias/ev3_falla_vida_negativa.png)
 
 ## 8. Conclusiones
 
