@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Simulador de combate</h1>
+<p>Crea dos personajes. Se lanza un d20 por turno y se simulan 1000 combates para estimar quien tiene ventaja.</p>
+
+{% if error %}
+<div class="error">{{ error }}</div>
+{% endif %}
+
+<form method="post" action="/combatir">
+  <div class="cols">
+    {% for i in (1, 2) %}
+    <div class="card">
+      <h2>Personaje {{ i }}</h2>
+      <label>Nombre</label>
+      <input name="nombre{{ i }}" value="{{ form['nombre' ~ i] }}" maxlength="20">
+      <label>Vida (1 a 500)</label>
+      <input name="vida{{ i }}" value="{{ form['vida' ~ i] }}">
+      <label>Ataque (0 a 100)</label>
+      <input name="ataque{{ i }}" value="{{ form['ataque' ~ i] }}">
+      <label>Defensa (0 a 100)</label>
+      <input name="defensa{{ i }}" value="{{ form['defensa' ~ i] }}">
+    </div>
+    {% endfor %}
+  </div>
+  <label>Semilla (opcional, para repetir el mismo combate)</label>
+  <input name="semilla" value="{{ form['semilla'] }}" style="max-width:200px">
+  <button type="submit">&#9876; Combatir</button>
+</form>
+{% endblock %}

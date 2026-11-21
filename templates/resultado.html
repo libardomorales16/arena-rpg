@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block titulo %}Resultado - Arena RPG{% endblock %}
+{% block contenido %}
+<h1>{{ p1[0] }} vs {{ p2[0] }}</h1>
+
+<h2>
+  {% if ganador %}Ganador: {{ ganador }}{% else %}Empate por limite de turnos{% endif %}
+</h2>
+
+<div class="cols">
+  {% for p in (p1, p2) %}
+  <div class="card">
+    <strong>{{ p[0] }}</strong><br>
+    Vida {{ p[1] }} | Ataque {{ p[2] }} | Defensa {{ p[3] }}
+  </div>
+  {% endfor %}
+</div>
+
+<h2>Registro del combate</h2>
+<table>
+  <tr><th>Turno</th><th>Ataca</th><th>d20</th><th>Efecto</th><th>Dano</th><th>Vida del rival</th></tr>
+  {% for f in filas %}
+  <tr class="{{ f.efecto }}">
+    <td>{{ f.turno }}</td><td>{{ f.atacante }}</td><td>{{ f.tirada }}</td>
+    <td>{{ f.efecto }}</td><td>{{ f.dano }}</td><td>{{ f.vida }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<h2>Simulacion de {{ n }} combates</h2>
+<div class="barra">
+  {% if pct1 > 0 %}<div class="b1" style="width:{{ pct1 }}%">{{ pct1 }}%</div>{% endif %}
+  {% if pctE > 0 %}<div class="bE" style="width:{{ pctE }}%">{{ pctE }}%</div>{% endif %}
+  {% if pct2 > 0 %}<div class="b2" style="width:{{ pct2 }}%">{{ pct2 }}%</div>{% endif %}
+</div>
+<p>
+  <span style="color:#6fcf97">&#9632;</span> {{ p1[0] }} &nbsp;
+  <span style="color:#bbb">&#9632;</span> Empate &nbsp;
+  <span style="color:#eb5757">&#9632;</span> {{ p2[0] }}
+  {% if semilla is not none %}<br>Semilla usada: {{ semilla }}{% endif %}
+</p>
+
+<p><a href="/">&larr; Nuevo combate</a></p>
+{% endblock %}
